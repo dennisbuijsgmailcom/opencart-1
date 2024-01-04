@@ -22,6 +22,13 @@
         </operation>
     </file>
     <file path="catalog/model/journal3/checkout.php">
+         <operation info="Dennis, only store title, not html.">
+            <search><![CDATA['payment_method' => Arr::get($this->session->data, 'payment_method.title', ''),]]></search>
+            <add position="replace"><![CDATA[
+'payment_method' => trim(strip_tags(Arr::get($this->session->data, 'payment_method.title', ''))),
+            ]]>
+            </add>
+        </operation>
         <operation info="Patch for Journal3 Theme. Operation 1.">
             <search index="4"><![CDATA[$sort_order = array();]]></search>
             <add position="replace" offset="6"><![CDATA[
